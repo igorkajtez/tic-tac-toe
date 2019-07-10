@@ -22,7 +22,7 @@ public class MainMenuController implements Controller, Initializable{
     @FXML
     public void onNewGameBtnClicked(){
         try {            
-            SceneManager.changeScene(stage, getClass().getResource("/view/GameView2.fxml"), new GameController());
+            SceneManager.changeScene(stage, getClass().getResource("/view/GameView.fxml"), new GameController());
         } catch (IOException ex) {
             ex.printStackTrace();
         }                
