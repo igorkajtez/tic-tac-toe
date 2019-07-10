@@ -8,8 +8,7 @@ public class GameModel {
     private Player player1;
     private Player player2;
     private List<Combo> combos = new ArrayList<>();    
-    private Tile[][] board = new Tile[3][3];
-    private Tile tile = new Tile();
+    private ITile[][] board = new Tile[3][3];
     private boolean playable = true; 
 
     public GameModel() {
@@ -40,7 +39,7 @@ public class GameModel {
         return this.playable;
     }
     
-    public void addAllCombos(Tile[][] board){        
+    public void addAllCombos(ITile[][] board){        
         //rows
         for(int row = 0; row < 3; row++){
             combos.add(new Combo(board[0][row], board[1][row], board[2][row]));
@@ -63,10 +62,10 @@ public class GameModel {
         }               
     }
     
-    public boolean boardFull(Tile[][] board){
+    public boolean boardFull(ITile[][] board){
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if(board[j][i].getText().isEmpty()){
+                if(board[j][i].getSymbol().isEmpty()){
                     return false;
                 }
             }
@@ -74,7 +73,7 @@ public class GameModel {
         return true;
     }  
     
-    public void checkForTie(Tile[][] board){
+    public void checkForTie(ITile[][] board){
         if(boardFull(board) && playable){
             playable = false;
             System.out.println("It's a tie");
@@ -89,6 +88,14 @@ public class GameModel {
                 break;
             }            
         }
+    }
+    
+    public String player1Name(){
+        return this.player1.getName();
+    }
+    
+    public String player2Name(){
+        return this.player2.getName();
     }
     
     
