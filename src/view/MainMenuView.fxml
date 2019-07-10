@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox id="mainMenu" alignment="CENTER" spacing="20" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="newGameBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onNewGameBtnClicked" prefHeight="50.0" prefWidth="200.0" text="New Game" />
+      <Button fx:id="scoreboardBtn" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Scoreboard" />
+      <Button fx:id="exitBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onExitBtnClicked" prefHeight="50.0" prefWidth="200.0" text="Exit" />
+   </children>
+</VBox>
