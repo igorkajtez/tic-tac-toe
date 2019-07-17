@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.GameModel;
-import model.JavaFxTile;
 
 public class GameController implements Controller, Initializable{
     private GameModel gameModel = new GameModel();
@@ -22,14 +21,12 @@ public class GameController implements Controller, Initializable{
     @FXML
     private Label player2Lbl;    
     @FXML
-    private GridPane grid; 
-    
-    private JavaFxTile[][] tiles = new JavaFxTile[3][3];
+    private GridPane grid;     
     
     @FXML
     public void buttonClicked(ActionEvent event) {
         Button btn = (Button) event.getSource();
-        char symbol = gameModel.getCurrentPlayerMark();
+        String symbol = gameModel.getCurrentPlayerMark();
         
         if(!gameModel.isPlayable()){
             return;
@@ -39,20 +36,27 @@ public class GameController implements Controller, Initializable{
               return;    
         }
         
-        btn.setText(String.valueOf(symbol));        
+        btn.setText(symbol); 
+        
+        int col = GridPane.getColumnIndex(btn);
+        int row = GridPane.getRowIndex(btn);
+        
+        gameModel.addSymbol(col, row);        
+        gameModel.updateCombos();
         
         gameModel.checkForWin();
-        gameModel.checkForTie(tiles);
+        gameModel.checkForTie(gameModel.getBoard());
         gameModel.changePlayer();
     }
         
     public void createBoard(){
         for(int i = 0; i < 3; i++){
             for (int j = 0; j < 3; j++) {
-                JavaFxTile btn = new JavaFxTile();
+                Button btn = new Button();
+                btn.setText("");
+                btn.setPrefSize(100, 100);
                 btn.setOnAction(this::buttonClicked);                
-                grid.add(btn, j, i);   
-                tiles[j][i] = btn;
+                grid.add(btn, j, i); 
             }
         }
     }
@@ -63,7 +67,6 @@ public class GameController implements Controller, Initializable{
         player2Lbl.setText(gameModel.player2Name());
         
         createBoard();           
-        gameModel.addAllCombos(tiles);
     }
 
     @Override
