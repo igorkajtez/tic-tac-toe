@@ -102,4 +102,13 @@ public class GameModel {
         return this.player2.getName();
     }
     
+    public void addSymbol(int col, int row){
+        board[col][row] = getCurrentPlayerMark();
+    }    
+        
+    public void updateCombos(){  
+        combos.clear();
+        addAllCombos(board);         
+    }
+    
 }
