@@ -1,20 +1,18 @@
 package model;
 public class Combo {
-    private ITile[] tiles;
+    private String[] tiles;
 
-    public Combo(ITile... tiles) {
+    public Combo(String... tiles) {
         this.tiles = tiles;
     }
     
     public boolean isComplete(){
-        if(tiles[0].getSymbol().isEmpty()){
+        if(tiles[0].isEmpty()){
             return false;
         }
         
-        return tiles[0].getSymbol().equals(tiles[1].getSymbol()) && 
-               tiles[0].getSymbol().equals(tiles[2].getSymbol());
+        return tiles[0].equals(tiles[1]) && 
+               tiles[0].equals(tiles[2]);
     }
-    
-    
 
 }
