@@ -1,10 +1,10 @@
 package model;
 public class Player {
     private String name;
-    private char playerSymbol;
+    private String playerSymbol;
     private boolean isCurrentPlayer;
 
-    public Player(String name, char playerSymbol, boolean isCurrentPlayer) {
+    public Player(String name, String playerSymbol, boolean isCurrentPlayer) {
         this.name = name;
         this.playerSymbol = playerSymbol;
         this.isCurrentPlayer = isCurrentPlayer;
@@ -18,11 +18,11 @@ public class Player {
         this.name = name;
     }
     
-    public char getPlayerSymbol(){
+    public String getPlayerSymbol(){
         return this.playerSymbol;
     }
     
-    public void setPlayerSymbol(char symbol){
+    public void setPlayerSymbol(String symbol){
         this.playerSymbol = symbol;
     }
     
