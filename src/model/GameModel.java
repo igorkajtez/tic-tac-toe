@@ -8,16 +8,16 @@ public class GameModel {
     private Player player1;
     private Player player2;
     private List<Combo> combos = new ArrayList<>();    
-    private ITile[][] board = new Tile[3][3];
+    private String[][] board = new String[3][3];
     private boolean playable = true; 
 
     public GameModel() {
-        player1 = new Player("Player 1", 'X', true);
-        player2 = new Player("Player 2", 'O', false);         
+        player1 = new Player("Player 1", "X", true);
+        player2 = new Player("Player 2", "O", false);         
         createBoard();
     }
     
-    public char getCurrentPlayerMark(){
+    public String getCurrentPlayerMark(){
         return player1.isCurrentPlayer() ? player1.getPlayerSymbol() : player2.getPlayerSymbol();
     }
     
@@ -39,7 +39,7 @@ public class GameModel {
         return this.playable;
     }
     
-    public void addAllCombos(ITile[][] board){        
+    public void addAllCombos(String[][] board){        
         //rows
         for(int row = 0; row < 3; row++){
             combos.add(new Combo(board[0][row], board[1][row], board[2][row]));
@@ -52,20 +52,24 @@ public class GameModel {
         combos.add(new Combo(board[0][0], board[1][1], board[2][2]));
         combos.add(new Combo(board[2][0], board[1][1], board[0][2]));
         
-    }
-    
+    }    
+        
     public void createBoard(){
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                board[j][i] = new Tile();                
+                board[j][i] = "";
             }            
         }               
     }
     
-    public boolean boardFull(ITile[][] board){
+    public String[][] getBoard(){
+        return this.board;
+    }
+    
+    public boolean boardFull(String[][] board){
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if(board[j][i].getSymbol().isEmpty()){
+                if(board[j][i].isEmpty()){
                     return false;
                 }
             }
@@ -73,7 +77,7 @@ public class GameModel {
         return true;
     }  
     
-    public void checkForTie(ITile[][] board){
+    public void checkForTie(String[][] board){
         if(boardFull(board) && playable){
             playable = false;
             System.out.println("It's a tie");
@@ -98,6 +102,4 @@ public class GameModel {
         return this.player2.getName();
     }
     
-    
-
 }
